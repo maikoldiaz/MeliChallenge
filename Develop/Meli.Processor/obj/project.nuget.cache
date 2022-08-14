@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8YCYYgxkoY5pvghn2xg5IUSFKdchJO5kCBrd2j3xwd3vcAOjio7E9vCpMQfZYrlDkX6bruJNnCOUXDndlHb3Ng==",
+  "success": true,
+  "projectFilePath": "/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.Processor/Meli.Processor.csproj",
+  "expectedPackageFiles": [
+    "/Users/macbookpro/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

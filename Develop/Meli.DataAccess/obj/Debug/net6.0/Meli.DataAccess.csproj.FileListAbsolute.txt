@@ -1,0 +1,15 @@
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/bin/Debug/net6.0/Meli.DataAccess.deps.json
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/bin/Debug/net6.0/Meli.DataAccess.dll
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/bin/Debug/net6.0/Meli.DataAccess.pdb
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/Meli.DataAccess.csproj.AssemblyReference.cache
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/Meli.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/Meli.DataAccess.AssemblyInfoInputs.cache
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/Meli.DataAccess.AssemblyInfo.cs
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/Meli.DataAccess.csproj.CoreCompileInputs.cache
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/Meli.DataAccess.dll
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/refint/Meli.DataAccess.dll
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/Meli.DataAccess.pdb
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/ref/Meli.DataAccess.dll
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/bin/Debug/net6.0/Meli.Entities.dll
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/bin/Debug/net6.0/Meli.Entities.pdb
+/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.DataAccess/obj/Debug/net6.0/Meli.DataAccess.csproj.CopyComplete
