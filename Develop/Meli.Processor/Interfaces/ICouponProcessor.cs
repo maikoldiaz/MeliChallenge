@@ -1,5 +1,5 @@
 ﻿namespace Meli.Processor.Interfaces;
-using System;
+using System.Net.Http;
 using Meli.Entities;
 public interface ICouponProcessor
 {

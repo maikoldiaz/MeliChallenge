@@ -15,5 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Meli.Entities\Meli.Entities.csproj" />
     <ProjectReference Include="..\Meli.DataAccess\Meli.DataAccess.csproj" />
+    <ProjectReference Include="..\Meli.Proxies\Meli.Proxies.csproj" />
   </ItemGroup>
 </Project>

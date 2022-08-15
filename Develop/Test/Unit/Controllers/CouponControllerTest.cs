@@ -1,6 +1,6 @@
 namespace Unit;
 
-public class Tests
+public class CouponControllerTest
 {
     [SetUp]
     public void Setup()
