@@ -1,4 +1,3 @@
-
 namespace Meli.Host.Api.Controllers;
 
 using Meli.Entities;

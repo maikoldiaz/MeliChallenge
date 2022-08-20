@@ -1,5 +1,5 @@
-.vs/
 .vscode/
+.vs/
 Develop/Meli.DataAccess.Sql/.DS_Store
 Develop/*/bin/
 Develop/*/obj/
@@ -15,3 +15,9 @@ Develop/Meli.Host.Api/bin/Debug/net6.0/Meli.Host.Api.dll
 Develop/Meli.Host.Api/bin/Debug/net6.0/Meli.Host.Api.pdb
 Develop/Meli.Host.Api/bin/Debug/net6.0/Meli.Processor.dll
 Develop/Meli.Host.Api/bin/Debug/net6.0/Meli.Processor.pdb
+Develop/Test/Unit/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+Develop/Test/Unit/obj/Debug/net6.0/Unit.AssemblyInfo.cs
+Develop/Test/Unit/obj/Debug/net6.0/Unit.AssemblyInfoInputs.cache
+Develop/Test/Unit/obj/Debug/net6.0/Unit.csproj.AssemblyReference.cache
+Develop/Test/Unit/obj/Debug/net6.0/Unit.GeneratedMSBuildEditorConfig.editorconfig
+Develop/Test/Unit/obj/Debug/net6.0/Unit.GlobalUsings.g.cs
