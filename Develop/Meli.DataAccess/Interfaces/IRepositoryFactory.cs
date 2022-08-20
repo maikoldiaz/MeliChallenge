@@ -1,13 +1,13 @@
-﻿namespace Meli.DataAccess.Interfaces;
-
+﻿
 using System;
 using System.Security.Principal;
 
-public interface IRepositoryFactory
+namespace Meli.DataAccess.Interfaces
 {
-    ICoupon ICoupon { get; set; }
-    IProduct IProduct { get; set; }
-    IRepository<TEntity> CreateRepository<TEntity>()
-            where TEntity : class;
+    public interface IRepositoryFactory
+    {
+        IProductRepository ProductRepository { get; }
+        IRepository<TEntity> CreateRepository<TEntity>()
+                where TEntity : class;
+    }
 }
-

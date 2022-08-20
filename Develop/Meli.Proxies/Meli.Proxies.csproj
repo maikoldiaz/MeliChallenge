@@ -18,10 +18,10 @@
     <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Meli.Entities\Meli.Entities.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Meli.Entities\Meli.Entities.csproj" />
   </ItemGroup>
 </Project>

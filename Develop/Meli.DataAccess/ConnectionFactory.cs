@@ -1,68 +1,71 @@
-﻿namespace Meli.DataAccess;
-using DataAccess.Interfaces;
+﻿using System.Collections.Generic;
+using Meli.DataAccess.Interfaces;
 using Meli.Entities.Configuration;
 
-public class ConnectionFactory : IConnectionFactory
+namespace Meli.DataAccess
 {
-    /// <summary>
-    /// The connection configuration.
-    /// </summary>
-    private IDictionary<string, object>? connectionConfiguration;
-
-    /// <inheritdoc/>
-    public SqlConnectionSettings SqlConnectionConfig => this.GetValue<SqlConnectionSettings>(nameof(this.SqlConnectionConfig));
-
-    /// <inheritdoc/>
-    public string NoSqlConnectionString => this.GetValue<string>(nameof(this.NoSqlConnectionString));
-
-    /// <inheritdoc/>
-    public bool IsReady => this.connectionConfiguration != null;
-
-    /// <inheritdoc/>
-    public void SetupSqlConfig(SqlConnectionSettings sqlConnectionConfig)
+    public class ConnectionFactory : IConnectionFactory
     {
-        this.connectionConfiguration ??= new Dictionary<string, object>();
+        /// <summary>
+        /// The connection configuration.
+        /// </summary>
+        private IDictionary<string, object> connectionConfiguration;
 
-        var key = nameof(this.SqlConnectionConfig);
-        if (this.connectionConfiguration.ContainsKey(key))
-        {
-            this.connectionConfiguration[key] = sqlConnectionConfig;
-        }
-        else
-        {
-            this.connectionConfiguration.Add(key, sqlConnectionConfig);
-        }
-    }
+        /// <inheritdoc/>
+        public SqlConnectionSettings SqlConnectionConfig => this.GetValue<SqlConnectionSettings>(nameof(this.SqlConnectionConfig));
 
-    /// <inheritdoc/>
-    public void SetupStorageConnection(string storageConnectionString)
-    {
-        this.connectionConfiguration ??= new Dictionary<string, object>();
+        /// <inheritdoc/>
+        public string NoSqlConnectionString => this.GetValue<string>(nameof(this.NoSqlConnectionString));
 
-        var key = nameof(this.NoSqlConnectionString);
-        if (this.connectionConfiguration.ContainsKey(key))
-        {
-            this.connectionConfiguration[key] = storageConnectionString;
-        }
-        else
-        {
-            this.connectionConfiguration.Add(key, storageConnectionString);
-        }
-    }
+        /// <inheritdoc/>
+        public bool IsReady => this.connectionConfiguration != null;
 
-    /// <summary>
-    /// Gets the value.
-    /// </summary>
-    /// <typeparam name="TValue">The type of the value.</typeparam>
-    /// <param name="key">The key.</param>
-    /// <returns>The configuration value.</returns>
-    private TValue GetValue<TValue>(string key)
-    {
-        if (this.connectionConfiguration != null && this.connectionConfiguration.ContainsKey(key))
+        /// <inheritdoc/>
+        public void SetupSqlConfig(SqlConnectionSettings sqlConnectionConfig)
         {
-            return (TValue)this.connectionConfiguration[key];
+            this.connectionConfiguration ??= new Dictionary<string, object>();
+
+            var key = nameof(this.SqlConnectionConfig);
+            if (this.connectionConfiguration.ContainsKey(key))
+            {
+                this.connectionConfiguration[key] = sqlConnectionConfig;
+            }
+            else
+            {
+                this.connectionConfiguration.Add(key, sqlConnectionConfig);
+            }
         }
 
-        return default(TValue);
+        /// <inheritdoc/>
+        public void SetupStorageConnection(string storageConnectionString)
+        {
+            this.connectionConfiguration ??= new Dictionary<string, object>();
+
+            var key = nameof(this.NoSqlConnectionString);
+            if (this.connectionConfiguration.ContainsKey(key))
+            {
+                this.connectionConfiguration[key] = storageConnectionString;
+            }
+            else
+            {
+                this.connectionConfiguration.Add(key, storageConnectionString);
+            }
+        }
+
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="key">The key.</param>
+        /// <returns>The configuration value.</returns>
+        private TValue GetValue<TValue>(string key)
+        {
+            if (this.connectionConfiguration != null && this.connectionConfiguration.ContainsKey(key))
+            {
+                return (TValue)this.connectionConfiguration[key];
+            }
+
+            return default(TValue);
+        }
     }
 }

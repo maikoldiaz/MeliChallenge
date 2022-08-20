@@ -12,7 +12,7 @@
     "Meli.Host.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:47633",
+      "applicationUrl": "http://localhost:2937",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -2,19 +2,27 @@
 using Meli.Entities;
 using Meli.Processor.Interfaces;
 using Meli.Proxies.Interfaces;
+using Meli.DataAccess.Interfaces;
+using System.Collections.Generic;
 
 namespace Meli.Processor;
 public class CouponProcessor : ICouponProcessor
 {
     private readonly ICouponProxy couponProxy;
-    public CouponProcessor(ICouponProxy _couponProxy)
+    private readonly IUnitOfWorkFactry unitOfWorkFactory;
+    private readonly IUnitOfWork unitOfWork;
+    public CouponProcessor(ICouponProxy _couponProxy, IUnitOfWorkFactry _unitOfWorkFactory)
     {
         this.couponProxy = _couponProxy;
+        this.unitOfWorkFactory = _unitOfWorkFactory;
+        this.unitOfWork = unitOfWorkFactory.GetUnitOfWork();
     }
 
-    public Task CreateItemAsync(List<string> items)
+    public async Task CreateItemAsync(List<Product> items)
     {
-        throw new NotImplementedException();
+        var repository = this.unitOfWork.CreateRepository<Product>();
+        repository.InsertAll(items);
+        await this.unitOfWork.SaveAsync(CancellationToken.None);
     }
 
     public async Task<CouponResponse> GetCouponAsync(Coupon coupon)
@@ -44,7 +52,7 @@ public class CouponProcessor : ICouponProcessor
 
     private async Task<CouponResponse> CalculateCouponAsync(IEnumerable<Product> products, double couponPrice)
     {
-        return await Task.Run<CouponResponse>(() => {
+        return await Task.Run<CouponResponse>(async () => {
             var filteredList = products.Where(x => x.Id != null).OrderBy(p => p.Price).ToList();
             double maxPriceForCoupon = 0;
             List<Product> items = new List<Product>();
@@ -57,6 +65,7 @@ public class CouponProcessor : ICouponProcessor
                 }
                 items.Add(filteredList[i]);
             }
+            await this.CreateItemAsync(items);
             return new CouponResponse { ItemIds = items.Select(x => x.Id!).ToList(), Total = items.Sum(x => x.Price) };
         });
     }

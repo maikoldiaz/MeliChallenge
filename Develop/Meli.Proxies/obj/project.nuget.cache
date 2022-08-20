@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "y4QPlzuMszdKYGFcqLDM3kXoa4IUos7N8UkH349ZPho8fCHukeuw4YRJrZsf/MSmLznQrAGlEPL21gGjZh8a6A==",
+  "dgSpecHash": "qqRwAPbvqWOAyoexxh89bzbxFv9lI7cF15V2nKNBs+wP1L7CO7jm6BNGzauXsNO4Pp+NqP7r8vxcSsSZZuItkw==",
   "success": true,
   "projectFilePath": "/Volumes/extra/Documents/repos/MeliChallenge/Develop/Meli.Proxies/Meli.Proxies.csproj",
   "expectedPackageFiles": [
@@ -12,8 +12,11 @@
     "/Users/macbookpro/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/Users/macbookpro/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "/Users/macbookpro/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/macbookpro/.nuget/packages/system.componentmodel.annotations/5.0.0/system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "/Users/macbookpro/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
-    "/Users/macbookpro/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "/Users/macbookpro/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/macbookpro/.nuget/packages/system.text.encodings.web/6.0.0/system.text.encodings.web.6.0.0.nupkg.sha512",
+    "/Users/macbookpro/.nuget/packages/system.text.json/6.0.5/system.text.json.6.0.5.nupkg.sha512"
   ],
   "logs": []
 }
