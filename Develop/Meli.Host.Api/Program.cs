@@ -12,7 +12,7 @@ builder.Services.AddScoped<IDataContext, SqlDataContext>();
 builder.Services.AddScoped<ISqlDataContext, SqlDataContext>();
 builder.Services.AddScoped<IRepositoryFactory, RepositoryFactory>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IUnitOfWorkFactry, UnitOfWorkFactory>();
+builder.Services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IHttpClientProxy, HttpClientProxy>();
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));

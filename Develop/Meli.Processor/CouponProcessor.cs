@@ -4,30 +4,32 @@ using Meli.Processor.Interfaces;
 using Meli.Proxies.Interfaces;
 using Meli.DataAccess.Interfaces;
 using System.Collections.Generic;
+using Meli.Core;
 
 namespace Meli.Processor;
 public class CouponProcessor : ICouponProcessor
 {
     private readonly ICouponProxy couponProxy;
-    private readonly IUnitOfWorkFactry unitOfWorkFactory;
+    private readonly IUnitOfWorkFactory unitOfWorkFactory;
     private readonly IUnitOfWork unitOfWork;
-    public CouponProcessor(ICouponProxy _couponProxy, IUnitOfWorkFactry _unitOfWorkFactory)
+    private readonly IProductProcessor productProcessor;
+    public CouponProcessor(ICouponProxy _couponProxy, IUnitOfWorkFactory _unitOfWorkFactory, IProductProcessor _productProcessor)
     {
         this.couponProxy = _couponProxy;
+        this.productProcessor = _productProcessor;
         this.unitOfWorkFactory = _unitOfWorkFactory;
         this.unitOfWork = unitOfWorkFactory.GetUnitOfWork();
     }
 
-    public async Task CreateItemAsync(List<Product> items)
+    public async Task CreateItemAsync(List<Product> products)
     {
-        var repository = this.unitOfWork.CreateRepository<Product>();
-        repository.InsertAll(items);
-        await this.unitOfWork.SaveAsync(CancellationToken.None);
+        ArgumentValidators.ThrowIfNull(products, nameof(products));
+        await this.productProcessor.CreatePruductAsync(products);
     }
 
     public async Task<CouponResponse> GetCouponAsync(Coupon coupon)
     {
-        if (coupon == null) throw new ArgumentNullException("The content cannot be null and void", nameof(coupon));
+        ArgumentValidators.ThrowIfNull(coupon, nameof(coupon));
         var exceptions = new ConcurrentQueue<Exception>();
         List<Product> products = new List<Product>();
         var tasks = coupon.ItemIds!.DistinctBy(dp => dp).AsParallel().Select(x => Task.Run(async () =>

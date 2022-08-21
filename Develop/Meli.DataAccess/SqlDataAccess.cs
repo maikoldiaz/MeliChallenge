@@ -127,7 +127,7 @@ namespace Meli.DataAccess;
 
         public async Task<IEnumerable<TEntity>> ExecuteQueryAsync(object args, IDictionary<string, object> data)
         {
-            var sql = BuildSql(args.ToString(), data.Keys);
+            var sql = BuildSql(args.ToString()!, data.Keys);
             var parameters = data.Select(BuildParameters);
 
             return await this.dataContext.Set<TEntity>().FromSqlRaw(sql, parameters.ToArray<object>()).ToListAsync();

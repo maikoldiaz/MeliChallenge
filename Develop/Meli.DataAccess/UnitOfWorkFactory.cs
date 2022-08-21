@@ -3,7 +3,7 @@ using Meli.DataAccess.Interfaces;
 
 namespace Meli.DataAccess
 {
-    public class UnitOfWorkFactory: IUnitOfWorkFactry
+    public class UnitOfWorkFactory: IUnitOfWorkFactory
     {
         /// <summary>
         /// The data context.

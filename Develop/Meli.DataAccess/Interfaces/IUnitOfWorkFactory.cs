@@ -4,7 +4,7 @@ namespace Meli.DataAccess.Interfaces
     /// <summary>
     /// The unit of work factory.
     /// </summary>
-    public interface IUnitOfWorkFactry
+    public interface IUnitOfWorkFactory
     {
         /// <summary>
         /// Gets the unit of work.

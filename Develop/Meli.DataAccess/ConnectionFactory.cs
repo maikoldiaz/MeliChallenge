@@ -9,7 +9,7 @@ namespace Meli.DataAccess
         /// <summary>
         /// The connection configuration.
         /// </summary>
-        private IDictionary<string, object> connectionConfiguration;
+        private IDictionary<string, object>? connectionConfiguration;
 
         /// <inheritdoc/>
         public SqlConnectionSettings SqlConnectionConfig => this.GetValue<SqlConnectionSettings>(nameof(this.SqlConnectionConfig));

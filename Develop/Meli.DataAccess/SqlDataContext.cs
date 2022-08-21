@@ -59,7 +59,7 @@ public class SqlDataContext : DbContext, ISqlDataContext
         }
     }
 
-    public DbSet<Product> Products { get; set; }
+    public DbSet<Product>? Products { get; set; }
 
 
 }

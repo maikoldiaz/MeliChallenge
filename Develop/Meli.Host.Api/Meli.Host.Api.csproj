@@ -26,6 +26,7 @@
     <ProjectReference Include="..\Meli.Entities\Meli.Entities.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\Meli.Core\Meli.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Newtonsoft.Json" />

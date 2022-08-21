@@ -2,7 +2,6 @@
 
 using System;
 using System.Net.Http;
-using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Meli.Proxies.Interfaces;
