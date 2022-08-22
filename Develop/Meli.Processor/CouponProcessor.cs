@@ -5,6 +5,8 @@ using Meli.Proxies.Interfaces;
 using Meli.DataAccess.Interfaces;
 using System.Collections.Generic;
 using Meli.Core;
+using static Azure.Core.HttpHeader;
+using System;
 
 namespace Meli.Processor;
 public class CouponProcessor : ICouponProcessor
@@ -30,9 +32,35 @@ public class CouponProcessor : ICouponProcessor
     public async Task<CouponResponse> GetCouponAsync(Coupon coupon)
     {
         ArgumentValidators.ThrowIfNull(coupon, nameof(coupon));
+        var products = await this.GetProductsFromCouponAsync(coupon.ItemIds);
+        return await this.CalculateCouponAsync(products, coupon.Amount);
+    }
+
+    public async Task<CouponResponse> CalculateCouponAsync(IEnumerable<Product> products, decimal couponPrice)
+    {
+        ArgumentValidators.ThrowIfNull(products, nameof(products));
+        ArgumentValidators.ThrowIfNull(couponPrice, nameof(couponPrice));
+        var filteredList = products.Where(x => x.Id != null).OrderByDescending(p => p.Price).ToList();
+        decimal maxPriceForCoupon = 0;
+        List<Product> items = new List<Product>();
+        for (int i = 0; i < products.Count(); i++)
+        {
+            maxPriceForCoupon += filteredList[i].Price;
+            if (maxPriceForCoupon >= couponPrice)
+            {
+                break;
+            }
+            items.Add(filteredList[i]);
+        }
+        await this.CreateItemAsync(items);
+        return new CouponResponse { ItemIds = items.Select(x => x.Id!).ToList(), Total = items.Sum(x => x.Price) };
+    }
+
+    public async Task<IEnumerable<Product>> GetProductsFromCouponAsync(List<string> itemIds)
+    {
         var exceptions = new ConcurrentQueue<Exception>();
         List<Product> products = new List<Product>();
-        var tasks = coupon.ItemIds!.DistinctBy(dp => dp).AsParallel().Select(x => Task.Run(async () =>
+        var tasks = itemIds!.DistinctBy(dp => dp).AsParallel().Select(x => Task.Run(async () =>
         {
             try
             {
@@ -44,31 +72,11 @@ public class CouponProcessor : ICouponProcessor
                 exceptions.Enqueue(e);
             }
         }));
-        await Task.WhenAll(tasks);
         if (!exceptions.IsEmpty)
         {
             throw new AggregateException(exceptions);
         }
-        return await this.CalculateCouponAsync(products, coupon.Amount);
-    }
-
-    private async Task<CouponResponse> CalculateCouponAsync(IEnumerable<Product> products, decimal couponPrice)
-    {
-        return await Task.Run<CouponResponse>(async () => {
-            var filteredList = products.Where(x => x.Id != null).OrderByDescending(p => p.Price).ToList();
-            decimal maxPriceForCoupon = 0;
-            List<Product> items = new List<Product>();
-            for (int i = 0; i < products.Count(); i++)
-            {
-                maxPriceForCoupon += filteredList[i].Price;
-                if (maxPriceForCoupon >= couponPrice)
-                {
-                    break;
-                }
-                items.Add(filteredList[i]);
-            }
-            await this.CreateItemAsync(items);
-            return new CouponResponse { ItemIds = items.Select(x => x.Id!).ToList(), Total = items.Sum(x => x.Price) };
-        });
+        await Task.WhenAll(tasks);
+        return products;
     }
 }

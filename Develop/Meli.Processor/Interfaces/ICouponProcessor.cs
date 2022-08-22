@@ -5,4 +5,5 @@ public interface ICouponProcessor
 {
     Task<CouponResponse> GetCouponAsync(Coupon coupon);
     Task CreateItemAsync(List<Product> items);
+    Task<IEnumerable<Product>> GetProductsFromCouponAsync(List<string> itemIds);
 }

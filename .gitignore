@@ -6,4 +6,7 @@ Develop/*/obj/
 Develop/*/obj/*
 Develop/*/bin/Debug/
 Develop/Meli.Host.Api/bin/
-Develop/Test/Unit/obj/
+Develop/Test/UnitTest/bin/
+Develop/Test/UnitTest/obj/
+Develop/Test/.DS_Store
+.DS_Store
