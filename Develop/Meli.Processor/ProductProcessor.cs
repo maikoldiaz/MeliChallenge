@@ -22,17 +22,19 @@ public class ProductProcessor : IProductProcessor
     public async Task<IEnumerable<Product>> GetMostLikedProductsAsync()
     {
         var repository = this.repositoryFactory.ProductRepository;
-        return await repository.GetMustLikedProducts();
+        var result = await repository.GetMustLikedProducts();
+        return result.ToList();
     }
 
     public async Task CreatePruductAsync(IEnumerable<Product> products)
     {
         ArgumentValidators.ThrowIfNull(products, nameof(products));
+        var productsToTable = products.ToDataTable("dbo.ProductList");
         var parameters = new Dictionary<string, object>
             {
-                { "@Products", products },
+                { "@Products",  productsToTable},
             };
-        await this.unitOfWork.CreateRepository<Product>().ExecuteAsync("usp_Sp",parameters);
+        await this.unitOfWork.CreateRepository<Product>().ExecuteAsync("usp_CreateOrUpdateProducts",parameters);
     }
 }
 

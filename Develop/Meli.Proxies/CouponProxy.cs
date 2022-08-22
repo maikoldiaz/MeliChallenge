@@ -16,7 +16,8 @@ public class CouponProxy : ICouponProxy
     public async Task<Product> ObtainProductAsync(string item)
     {
         var result = await this.couponClient.GetAsync($"items/{item}");
-        return await result.Content.DeserializeHttpContentAsync<Product>();
+        var objectresult = await result.Content.DeserializeHttpContentAsync<Product>();
+        return objectresult;
     }
 }
 

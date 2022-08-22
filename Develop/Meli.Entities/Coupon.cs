@@ -10,6 +10,6 @@ namespace Meli.Entities
         [JsonPropertyName("item_ids")]
         public List<string> ItemIds { get; set; }
         [JsonPropertyName("amount")]
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

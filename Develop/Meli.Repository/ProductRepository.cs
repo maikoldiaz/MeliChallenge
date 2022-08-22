@@ -19,7 +19,7 @@ namespace Meli.Repository
         {
             return await Task<IEnumerable<Product>>.Run(() =>
             {
-                return this.Products.Where(x => x.Price > 0);
+                return this.Products.AsQueryable().OrderByDescending(x => x.likesNumber).Take(5);
             });
         }
     }

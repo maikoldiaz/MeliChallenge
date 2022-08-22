@@ -21,6 +21,14 @@ public class ProductController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<Product>> GetItemsFromCouponAsync()
     {
-        return await processor.GetMostLikedProductsAsync();
+        try
+        {
+            var result = await processor.GetMostLikedProductsAsync();
+            return result.ToList();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 }

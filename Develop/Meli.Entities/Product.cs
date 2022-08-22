@@ -1,21 +1,30 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Meli.Entities
 {
     public class Product
     {
         [Required]
-        [JsonPropertyName("id")]
+        [JsonProperty("id")]
         public string Id { get; set; }
-        [JsonPropertyName("site_id")]
+
+
+        [JsonProperty("site_id")]
         public string SiteId { get; set; }
-        [JsonPropertyName("title")]
+
+
+        [JsonProperty("title")]
         public string Title { get; set; }
-        [JsonPropertyName("price")]
-        public double Price { get; set; }
-        [JsonPropertyName("base_price")]
-        public double BasePrice { get; set; }
+
+
+        [JsonProperty("price")]
+        public decimal Price { get; set; }
+
+
+        [JsonProperty("base_price")]
+        public decimal BasePrice { get; set; }
+
         [JsonIgnore]
         public int likesNumber { get; set; }
     }

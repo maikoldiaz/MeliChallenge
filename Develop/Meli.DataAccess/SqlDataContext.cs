@@ -20,7 +20,8 @@ public class SqlDataContext : DbContext, ISqlDataContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Product>(entity => {
-            entity.Property(p => ((decimal)p.Price));
+            entity.Property(p => p.Price);
+            entity.Property(p => p.BasePrice);
         });
     }
 

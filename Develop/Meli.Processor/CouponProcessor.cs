@@ -52,11 +52,11 @@ public class CouponProcessor : ICouponProcessor
         return await this.CalculateCouponAsync(products, coupon.Amount);
     }
 
-    private async Task<CouponResponse> CalculateCouponAsync(IEnumerable<Product> products, double couponPrice)
+    private async Task<CouponResponse> CalculateCouponAsync(IEnumerable<Product> products, decimal couponPrice)
     {
         return await Task.Run<CouponResponse>(async () => {
-            var filteredList = products.Where(x => x.Id != null).OrderBy(p => p.Price).ToList();
-            double maxPriceForCoupon = 0;
+            var filteredList = products.Where(x => x.Id != null).OrderByDescending(p => p.Price).ToList();
+            decimal maxPriceForCoupon = 0;
             List<Product> items = new List<Product>();
             for (int i = 0; i < products.Count(); i++)
             {

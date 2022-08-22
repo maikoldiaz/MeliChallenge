@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System.Data;
 using System.Linq.Expressions;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Meli.DataAccess.Interfaces;
+using Microsoft.Data.SqlClient;
 
 namespace Meli.DataAccess;
     public class SqlDataAccess<TEntity> : ISqlDataAccess<TEntity>
