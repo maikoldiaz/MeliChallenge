@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: melichallenge
+  name: melichallenge
+  namespace: app-melichallenge
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: melichallenge
+  template:
+    metadata:
+      labels:
+        app: melichallenge
+    spec:
+      containers:
+      - image: acrmd.azurecr.io/melichallenge
+        imagePullPolicy: Always
+        name: melichallenge
+
+
+
+    
