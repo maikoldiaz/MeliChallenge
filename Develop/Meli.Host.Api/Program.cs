@@ -5,6 +5,7 @@ using Meli.Processor.Interfaces;
 using Meli.Processor;
 using Meli.Proxies;
 using Meli.Proxies.Interfaces;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient(typeof(ISqlDataAccess<>),typeof(SqlDataAccess<>));
@@ -25,8 +26,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRouting(route => route.LowercaseUrls = true);
 builder.Services.AddHttpClient();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.RedirectStatusCode = (int)HttpStatusCode.TemporaryRedirect;
+    options.HttpsPort = 5001;
+});
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
