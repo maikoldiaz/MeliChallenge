@@ -3,10 +3,7 @@ using Meli.Entities;
 using Meli.Processor.Interfaces;
 using Meli.Proxies.Interfaces;
 using Meli.DataAccess.Interfaces;
-using System.Collections.Generic;
 using Meli.Core;
-using static Azure.Core.HttpHeader;
-using System;
 
 namespace Meli.Processor;
 public class CouponProcessor : ICouponProcessor
@@ -40,17 +37,21 @@ public class CouponProcessor : ICouponProcessor
     {
         ArgumentValidators.ThrowIfNull(products, nameof(products));
         ArgumentValidators.ThrowIfNull(couponPrice, nameof(couponPrice));
-        var filteredList = products.Where(x => x.Id != null).OrderByDescending(p => p.Price).ToList();
-        decimal maxPriceForCoupon = 0;
-        List<Product> items = new List<Product>();
-        for (int i = 0; i < products.Count(); i++)
+        var filteredList = products.Where(x => x.Id != null).OrderBy(p => p.Price).ToList();
+        var isSolve = false;
+        List<Product> items = new();
+        while (filteredList.Count != 0 && !isSolve)
         {
-            maxPriceForCoupon += filteredList[i].Price;
-            if (maxPriceForCoupon >= couponPrice)
+            var itemToAdd = filteredList.FirstOrDefault();
+            filteredList.Remove(itemToAdd!);
+            if (items.Sum(x => x.Price) + itemToAdd!.Price <= couponPrice)
             {
-                break;
+                items.Add(itemToAdd);
             }
-            items.Add(filteredList[i]);
+            else
+            {
+                isSolve = true;
+            }
         }
         await this.CreateItemAsync(items);
         return new CouponResponse { ItemIds = items.Select(x => x.Id!).ToList(), Total = items.Sum(x => x.Price) };
@@ -59,7 +60,7 @@ public class CouponProcessor : ICouponProcessor
     public async Task<IEnumerable<Product>> GetProductsFromCouponAsync(List<string> itemIds)
     {
         var exceptions = new ConcurrentQueue<Exception>();
-        List<Product> products = new List<Product>();
+        List<Product> products = new();
         var tasks = itemIds!.DistinctBy(dp => dp).AsParallel().Select(x => Task.Run(async () =>
         {
             try

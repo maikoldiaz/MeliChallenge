@@ -68,7 +68,7 @@ public class CouponControllerTest
     [TestMethod]
     public async Task CalculateCouponAsync_ShuldBySuccess()
     {
-        var result = await this.processor!.CalculateCouponAsync(this.products!, 200);
+        var result = await this.processor!.CalculateCouponAsync(this.products!, 500);
         Assert.AreEqual(this.couponResponse!.Total, result.Total);
     }
 
@@ -84,14 +84,28 @@ public class CouponControllerTest
             new Product {
                 Id = "MELI02",
                 BasePrice = 30,
-                Price = 30,
+                Price = 210,
                 SiteId = "MCO",
                 Title = "Test2"
             },
             new Product {
                 Id = "MELI03",
                 BasePrice = 80,
+                Price = 260,
+                SiteId = "MCO",
+                Title = "Test3"
+            },
+            new Product {
+                Id = "MELI04",
+                BasePrice = 80,
                 Price = 80,
+                SiteId = "MCO",
+                Title = "Test3"
+            },
+            new Product {
+                Id = "MELI05",
+                BasePrice = 80,
+                Price = 90,
                 SiteId = "MCO",
                 Title = "Test3"
             }
@@ -99,8 +113,8 @@ public class CouponControllerTest
 
         this.couponResponse = new CouponResponse
         {
-            ItemIds = this.products.Where(x => x.Id != "MELI02").Select(p => p.Id).ToList(),
-            Total = 180
+            ItemIds = this.products.Where(x => x.Id != "MELI03").Select(p => p.Id).ToList(),
+            Total = 480
         };
     }
 }
