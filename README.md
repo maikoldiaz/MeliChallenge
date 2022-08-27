@@ -1,6 +1,6 @@
 # MeliChallenge
+
 **Repositorio (https://github.com/maikoldiaz/MeliChallenge.git)**
-**Swagger (https://meli-challenge.azurewebsites.net/index.html)**
 
 ## El Reto: Maximiza el uso de un cupon
 
@@ -17,9 +17,30 @@ Premisas:
 ## Solución Al Problema
 **Nivel 1 y Nivel 2**
 
-- Endpoint "coupon" es el encargado de retornar los item y el valor que se puede usar al momento de recibir un cupon.
+**Swagger (https://meli-challenge.azurewebsites.net/index.html)**
+
+Endpoint "coupon" es el encargado de retornar los item y el valor que se puede usar al momento de recibir un cupon.
 
 https://meli-challenge.azurewebsites.net/coupon/
+
+```
+{
+  "item_ids": [
+    "MCO928039047",
+    "MCO933562900",
+    "MCO869185478",
+    "MCO894891259",
+    "MCO870314784"
+  ],
+  "amount": 1000000
+}
+```
+
+
+Endpoint "product" que tiene habilitado el metodo get, se encarga de retornar los 5 productos mas gustados.
+
+https://meli-challenge.azurewebsites.net/product/
+
 
 ## Stack Tecnológico Solución
  
@@ -31,4 +52,26 @@ https://meli-challenge.azurewebsites.net/coupon/
 
 - Se usa Arquitectura Limpia para construir la aplicación, con el objetivo de desacoplar los componentes, y que la lógica de negocio no dependa del framework y del motor de la base de datos.
 - Se trato de seguir los lineamientos de los principios SOLID y clean code.
+
+## Instrucciones para levantar la app
+
+1. Obtener el codigo fuente.
+```
+git clone https://github.com/maikoldiaz/MeliChallenge.git
+```
+2. Posicionarse sobre la carpeta Develop, donde se encuentra el código fuente del proyecto.
+```
+cd MeliChallenge/Develop/
+```
+3. Construir la imagen de Docker.
+```
+docker build . -f .dockerfile -t melichallenge --no-cache
+```
+4. Levantar el contenedor con la imagen de Docker previamente construido.
+
+```
+docker run -d -p 8080:80 melichallenge
+```
+
+5. Abrir el navegador de su preferencia y en la barra superior pegar este link: [melicahllenge](http://localhost:8080)
  
