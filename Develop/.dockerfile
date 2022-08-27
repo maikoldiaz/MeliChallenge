@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 as base
 WORKDIR /app
 EXPOSE 80
+ENV ASPNETCORE_ENVIRONMENT=Development
     
 # Copy csproj and restore as distinct layers
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build

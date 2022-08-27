@@ -4,7 +4,7 @@ metadata:
   name: melichallenge-load-balancer
   namespace: app-melichallenge
 spec:
-  # loadBalancerIP: 52.151.217.51
+  loadBalancerIP: 52.151.217.51
   type: LoadBalancer
   ports:
   - port: 80

@@ -1,5 +1,6 @@
 # MeliChallenge
 **Repositorio (https://github.com/maikoldiaz/MeliChallenge.git)**
+**Swagger (https://meli-challenge.azurewebsites.net/index.html)**
 
 ## El Reto: Maximiza el uso de un cupon
 
@@ -18,7 +19,7 @@ Premisas:
 
 - Endpoint "coupon" es el encargado de retornar los item y el valor que se puede usar al momento de recibir un cupon.
 
-https://maikoldiaz.com/api/coupon/
+https://meli-challenge.azurewebsites.net/coupon/
 
 ## Stack Tecnológico Solución
  
